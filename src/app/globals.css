@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 245 244 240; --surface: 255 255 255; --surface2: 249 248 245; --line: 226 224 216;
+  --ink: 20 28 25; --muted: 106 115 109; --brand: 15 92 77; --brandfg: 255 255 255; --accent: 184 134 42;
+  --success: 22 128 80; --warn: 186 112 8; --danger: 190 52 52; --info: 45 100 170;
+  --sidebar: 11 38 32;
+}
+.dark {
+  --bg: 10 14 13; --surface: 17 23 21; --surface2: 23 30 28; --line: 37 48 44;
+  --ink: 232 238 234; --muted: 138 152 145; --brand: 61 190 153; --brandfg: 5 25 19; --accent: 214 170 76;
+  --success: 74 200 130; --warn: 230 170 60; --danger: 240 106 106; --info: 110 160 230;
+  --sidebar: 8 22 19;
+}
+html { color-scheme: light; }
+html.dark { color-scheme: dark; }
+body { @apply bg-bg text-ink font-sans antialiased; font-feature-settings: 'cv11', 'ss01'; }
+* { @apply border-line; }
+.num { font-variant-numeric: tabular-nums; }
+.display { font-family: 'Fraunces Variable', Georgia, serif; font-variation-settings: 'opsz' 72; letter-spacing: -0.01em; }
+:focus-visible { outline: 2px solid rgb(var(--brand)); outline-offset: 2px; }
+::selection { background: rgb(var(--brand) / 0.25); }
+
+@layer components {
+  .input { @apply w-full rounded-lg border border-line bg-surface px-3 py-2 text-sm text-ink placeholder:text-muted/70 transition focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20 disabled:opacity-60; }
+  .th { @apply px-4 py-2.5 text-left text-[11px] font-semibold uppercase tracking-wider text-muted whitespace-nowrap; }
+  .td { @apply px-4 py-3 text-sm; }
+  .card { @apply rounded-xl2 border border-line bg-surface shadow-card; }
+}
+@keyframes slide-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes pop { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
+@keyframes bar { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+.anim-in { animation: slide-in .25s ease-out both; }
+.anim-pop { animation: pop .18s ease-out both; }
+@media print { aside, header { display: none !important; } }
